@@ -1,22 +1,18 @@
 import React from 'react';
 import './index.css';
-
-function Leftpanel({ items }) {
+import List from './List';
+import iconList from './list.svg';
+import iconPlus from './plus.svg';
+import AddNewList from './AddNewList';
+import db from '../assets/db.json';
+function Leftpanel() {
+    const btn = true;
     return (
         <div className='leftpanel'>
-            <ul>
-                {
-                    items.map((item, index) => (
-                        <li key={index}>
-                            <div className='marker' style={{ backgroundColor: item.color }} />
-                            <span>{item.title}</span>
-                            <div className='btnX'>X</div>
-                        </li>
-                    ))}
-
-            </ul>
-
-        </div>
+            <List items={[{ icon: iconList, title: 'Все задачи' }]} />
+            <List items={[{ title: 'Покупки', color: 'red', addclass: 'marker', btn }, { title: 'Фронтент', color: 'blue', btn, addclass: 'marker' }, { title: 'Фильмы', color: 'green', btn, addclass: 'marker' },]} />
+            <AddNewList items={[{ icon: iconPlus, title: 'Добавить список' }]} db={db} />
+        </div >
     );
 }
 

@@ -1,0 +1,33 @@
+.addNewList{
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #5b6e7b;
+    position: relative;
+  display: flex;
+  flex-direction: column;
+    width: auto;
+    padding-top: 15px;
+}
+.addNewList img{
+    width: 25px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.addNewList input{
+    margin: 13px;
+    height: 30px;
+    border-radius: 5px;
+}
+.addNewList ul{
+    display: flex;
+}
+.addNewList ul li{
+    height: min-content;
+}
+.markerAll{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: blue;
+}

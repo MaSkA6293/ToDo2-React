@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import Leftpanel from './Leftpanel'
+import db from './assets/db.json';
 function App() {
+  console.log(db)
   return (
-    <div className='App'>
-      <Leftpanel items={[{ title: 'book', color: 'red' }, { title: 'book2', color: 'blue' }, { title: 'book3', color: 'green' }, { title: 'book4', color: 'red' }]} />
-
-    </div>
+    < div className='App' >
+      <Leftpanel db={db} />
+    </div >
   );
 }
 

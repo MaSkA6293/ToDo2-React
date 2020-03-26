@@ -1,0 +1,46 @@
+.leftpanel{
+    width: 250px;
+    height: 100%;
+    background-color: #bbbbbb;
+    border-radius: 10px;
+}
+.leftpanel ul {
+    padding: 5px;
+}
+.leftpanel ul li{
+    position: relative;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    
+}
+.leftpanel ul li:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px #676161;
+    border-radius: 10px;
+    background-color: #d6e4df82;
+}
+
+.icon {
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.btnX{
+    position: absolute;
+    right: 15px;
+    border-radius: 3px;
+    height: 15px;
+   
+}
+.btnX img {
+    width: 15px;
+}
+.btnX:hover{
+    box-shadow: 0px 0px 5px 4px #ff2b3e;
+}
