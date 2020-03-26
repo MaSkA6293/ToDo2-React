@@ -1,0 +1,36 @@
+.leftpanel{
+    width: 200px;
+    height: 100%;
+    background-color: #bbbbbb;
+    border-radius: 10px;
+}
+.leftpanel ul {
+    padding: 10px;
+}
+.leftpanel ul li{
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    
+}
+.leftpanel ul li:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px #676161;
+    border-radius: 10px;
+    background-color: #d6e4df82;
+}
+.marker{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: blue;
+    display: inline-block;
+}
+.btnX{
+    display: flex;
+    justify-content: right;
+}
