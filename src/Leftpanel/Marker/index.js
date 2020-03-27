@@ -1,8 +1,8 @@
 import React from 'react';
 import './Marker.css';
-function Marker({ color, addclass }) {
+const Marker = ({ color, addclass, onClick }) => {
     return (
-        <div className={addclass} style={{ backgroundColor: color }} />
+        <div className={addclass} style={{ backgroundColor: color }} onClick={onClick} />
     );
 }
 

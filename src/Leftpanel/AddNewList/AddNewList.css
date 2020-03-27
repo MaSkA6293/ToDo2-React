@@ -1,7 +1,7 @@
 .addNewList{
     margin: 5px;
     border-radius: 5px;
-    background-color: #5b6e7b;
+    background-color: #85898c8c;
     position: relative;
   display: flex;
   flex-direction: column;
@@ -25,9 +25,11 @@
 .addNewList ul li{
     height: min-content;
 }
-.markerAll{
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-    background-color: blue;
+
+.addNewList button{
+    background-color: #41b960;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    height: 35px;
 }
+

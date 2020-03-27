@@ -13,14 +13,8 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 45px;
+    height: 35px;
     
-}
-.leftpanel ul li:hover{
-    cursor: pointer;
-    box-shadow: 1px 1px #676161;
-    border-radius: 10px;
-    background-color: #d6e4df82;
 }
 
 .icon {
