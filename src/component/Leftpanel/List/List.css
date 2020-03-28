@@ -1,0 +1,30 @@
+
+
+.list{
+    border-bottom: 4px solid #89949e;
+}
+.icon {
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.btnX{
+    position: absolute;
+    right: 15px;
+    border-radius: 3px;
+    height: 15px;
+   opacity: 0;
+}
+.btnX img {
+    width: 15px;
+}
+
+.leftpanel ul li:hover .btnX{
+    opacity: 0.4;
+}
+.leftpanel ul li:hover .btnX:hover{
+    opacity: 1;
+}

@@ -9,11 +9,11 @@
 
 .App{
   position: absolute;
+  display: flex;
   left:50%;
   top:50%;
   width: 750px;
   height: 530px;
-  justify-content: center;
   background-color:whitesmoke;
   transform: translate(-50%, -50%);
   border-radius: 10px;

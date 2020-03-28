@@ -24,12 +24,17 @@
 }
 .addNewList ul li{
     height: min-content;
+ 
 }
 
 .addNewList button{
+    cursor: pointer;
     background-color: #41b960;
     border-radius: 10px;
     margin-bottom: 5px;
     height: 35px;
 }
 
+.CloseBtn{
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.content{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+
+.content h2 {
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 30px;
+}
+
+.content img {
+    width: 30px;
+    margin-left: 40px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+.content ul li:hover img {
+    opacity: 1;
+}
+.content ul li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#Layer_1 path st1{
+fill:red;
+}
+.st0{
+    fill:yellow
+}
+.st1{
+    fill:red
+}
+

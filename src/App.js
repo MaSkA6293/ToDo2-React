@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Leftpanel from './Leftpanel'
-import db from './assets/db.json';
-function App() {
-  console.log(db)
+import Leftpanel from './component/Leftpanel'
+
+const App = () => {
   return (
     < div className='App' >
-      <Leftpanel db={db} />
+      <Leftpanel />
     </div >
   );
 }
