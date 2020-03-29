@@ -1,4 +1,10 @@
-
+.nameList{
+    flex:0.8;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90px;
+    white-space: nowrap;
+}
 
 .list{
     border-bottom: 4px solid #89949e;

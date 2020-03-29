@@ -1,47 +1,23 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import './index.css';
 import List from './List';
-import iconList from './list.svg';
-import iconPlus from './plus.svg';
+import iconList from '../../assets/img/list.svg';
+import iconPlus from '../../assets/img/plus.svg';
 import AddNewList from './AddNewList';
-import axios from 'axios';
-import Contentpanel from '../Contentpanel'
-const Leftpanel = ({ listfull, colorsfull }) => {
-    const [list, setlist] = useState(null);
-    const [colors, setcolors] = useState(null);
-    useEffect(() => {
-        axios
-            .get('http://localhost:3001/lists?_expand=color')
-            .then(({ data }) => {
-                setlist(data)
-            });
-        axios.get('http://localhost:3001/colors').then(({ data }) => {
-            setcolors(data);
-        });
-    }, []);
+import contextToDo from '../context'
 
+const Leftpanel = () => {
+    const context = useContext(contextToDo);
 
-
-    const deletItem = (id) => {
-        if (window.confirm('Вы действительно хотите удалить?')) {
-            axios.delete('http://localhost:3001/lists/' + id)
-            setlist(list.filter(item => item.id !== +id))
-        }
-    }
-
-    const addNewItem = (obj) => {
-        const newList = [...list, obj];
-        setlist(newList)
-    }
+    const { list, colors, delet, add, activ } = context;
 
     return (
         <Fragment>
             <div className='leftpanel'>
                 <List items={[{ icon: iconList, name: 'Все задачи' }]} />
-                {list ? (<List items={list} addclass='marker' btn delet={deletItem} />) : ('Загрузка...')}
-                {list ? (<AddNewList colors={colors} items={[{ icon: iconPlus, name: 'Добавить список' }]} add={addNewItem} />) : ('Загрузка Add...')}
+                {list ? (<List items={list} addclass='marker' btn delet={delet} activItem={activ} />) : ('Загрузка...')}
+                {list ? (<AddNewList colors={colors} items={[{ icon: iconPlus, name: 'Добавить список' }]} add={add} />) : ('Загрузка Add...')}
             </div >
-            <Contentpanel />
         </Fragment>
     );
 }

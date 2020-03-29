@@ -33,8 +33,9 @@ const AddNewList = ({ items, add, colors }) => {
             axios.post('http://localhost:3001/lists', { name: inputValue, colorId: activColor })
                 .then(({ data }) => {
                     let color = colors.filter(color => color.id === activColor)[0];
+                    let tasks = [];
                     const newitem = {
-                        ...data, color
+                        ...data, color, tasks
                     }
                     add(newitem);
                     setisLoading(false)
