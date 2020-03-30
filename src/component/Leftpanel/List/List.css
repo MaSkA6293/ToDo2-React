@@ -5,7 +5,10 @@
     width: 90px;
     white-space: nowrap;
 }
-
+.ActivTab{
+    background-color: #7d99cc;
+    border-radius: 10px;
+}
 .list{
     border-bottom: 4px solid #89949e;
 }

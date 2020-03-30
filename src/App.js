@@ -4,7 +4,7 @@ import Leftpanel from './component/Leftpanel'
 import contextToDo from './component/context'
 import axios from 'axios'
 import ContentPanel from './component/Contentpanel'
-import List from './component/Leftpanel/List';
+import { Route, useHistory } from "react-router-dom";
 const App = () => {
 
   const [list, setlist] = useState(null);
@@ -12,12 +12,14 @@ const App = () => {
   const [activItem, setactivItem] = useState(null)
   const [isOpenPanel, setisOpenPanel] = useState(false);
   const [isLoading, setisLoading] = useState(false);
+
+  let history = useHistory();
   useEffect(() => {
     axios
       .get('http://localhost:3001/lists?_expand=color&_embed=tasks')
       .then(({ data }) => {
         setlist(data);
-        setactivItem(data[0])
+        // setactivItem(data[0])
 
       });
     axios.get('http://localhost:3001/colors').then(({ data }) => {
@@ -25,12 +27,23 @@ const App = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const id = history.location.pathname.split('lists/')[1];
+    if (list) {
+      const activ = list.find(li => li.id === Number(id));
+      if (activ === undefined) {
+        history.push('/')
+      }
+      setactivItem(activ)
+    }
 
+  }, [list, history.location.pathname])
 
   const deletItem = (id) => {
     if (window.confirm('Вы действительно хотите удалить?')) {
-      axios.delete('http://localhost:3001/lists/' + id)
-      setlist(list.filter(item => item.id !== +id))
+      axios.delete('http://localhost:3001/lists/' + id);
+      setlist(list.filter(item => item.id !== +id));
+
     }
   }
 
@@ -39,8 +52,9 @@ const App = () => {
     setlist(newList)
   }
 
-  const activItemList = (id) => {
-    setactivItem(id);
+  const activItemList = (obj) => {
+    history.push(`/lists/${obj.id}`)
+    setactivItem(obj);
     setisOpenPanel(false);
 
   }
@@ -99,9 +113,23 @@ const App = () => {
 
   return (
     < div className='App' >
-      <contextToDo.Provider value={{ list, colors, activItem, delet: deletItem, add: addNewItem, activ: activItemList, setNewItemName: setNewItemName, setNewStatus: setStatusItem, addTask: addTask, isOpenPanel, setisOpenPanel, isLoading, setlist }}>
-        <Leftpanel />
-        {list && activItem ? <ContentPanel /> : ''}
+      <contextToDo.Provider value={{ list, colors, activItem, delet: deletItem, add: addNewItem, activ: activItemList, setNewItemName: setNewItemName, setNewStatus: setStatusItem, addTask: addTask, isOpenPanel, setisOpenPanel, isLoading, setlist, history, setactivItem }}>
+
+        <Route exact path='/'>
+          {list && <Leftpanel />}
+          <div className="contentAll">
+            {list ? list.map((item, index) => {
+              return <ContentPanel key={index} activItem={item} empty={true} />
+            })
+              : ''}
+          </div>
+        </Route>
+
+
+        <Route path='/lists'>
+          {list && <Leftpanel />}
+          {list && activItem && <ContentPanel activItem={activItem} />}
+        </Route>
       </contextToDo.Provider>
     </div >
   );

@@ -59,7 +59,7 @@ const AddNewList = ({ items, add, colors }) => {
             </ul>
 
             {OpenPanel && <div className='addNewList'>
-                <input type='text' placeholder='   Название списка' onChange={handlerinput} value={inputValue}></input>
+                <input type='text' placeholder='   Название списка' onChange={handlerinput} value={inputValue} autoFocus={true}></input>
                 <ul>
                     {colors.map((items, index) => (
                         <li key={index}><Marker addclass={classNames('markerAll', items.id === activColor ? 'active' : '')} color={items.hex} onClick={() => setActivColor(items.id)} /></li>

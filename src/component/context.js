@@ -14,4 +14,6 @@ export default React.createContext({
     isLoading: () => { },
     setisLoading: () => { },
     setlist: () => { },
+    history: () => { },
+    setactivItem: () => { }
 })

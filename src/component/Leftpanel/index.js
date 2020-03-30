@@ -14,8 +14,8 @@ const Leftpanel = () => {
     return (
         <Fragment>
             <div className='leftpanel'>
-                <List items={[{ icon: iconList, name: 'Все задачи' }]} />
-                {list ? (<List items={list} addclass='marker' btn delet={delet} activItem={activ} />) : ('Загрузка...')}
+                <List items={[{ icon: iconList, name: 'Все задачи' }]} onactivItem={activ} allListTask={true} />
+                {list ? (<List items={list} addclass='marker' btn delet={delet} onactivItem={activ} />) : ('Загрузка...')}
                 {list ? (<AddNewList colors={colors} items={[{ icon: iconPlus, name: 'Добавить список' }]} add={add} />) : ('Загрузка Add...')}
             </div >
         </Fragment>

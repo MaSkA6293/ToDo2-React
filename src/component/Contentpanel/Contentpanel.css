@@ -3,6 +3,9 @@
     flex:1;
     flex-direction: column;
 }
+
+
+
 .nameItem{
     display: flex;
     justify-content: center;
@@ -14,16 +17,16 @@
     opacity: 0.6;
 }
 .nameItem img:hover{
- 
+ cursor: pointer;
     opacity: 1;
 }
 .content h2 {
    text-align: center;
     font-size: 30px;
-  
+
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 300px;
+    width: 330px;
     white-space: nowrap;
 }
 
@@ -55,18 +58,17 @@
     white-space: nowrap;
     display: flex;
     margin-bottom: 10px;
+    width: 490px;
 }
 .content ul li span{
     flex: 1;
 }
 .content ul li img{
-   width: 30px;
-   margin-right: 40px;
-   margin-left: -35px;
+ 
     opacity: 0;
 }
 .content ul li:hover img{
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 
@@ -138,4 +140,13 @@
     border-radius: 10px;
     width: 90px;
     background-color: #becbd6;
+}
+
+
+.TextTask{
+    font-size: 19px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 120px;
+    white-space: nowrap;
 }

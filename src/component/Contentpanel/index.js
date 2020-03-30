@@ -5,12 +5,11 @@ import axios from 'axios';
 import edit from '../../assets/img/edit.svg'
 import iconPlus from '../../assets/img/plus.svg';
 import iconDelet from '../../assets/img/delet.svg';
-import contextToDo from '../context'
+import contextToDo from '../context';
+import { Link } from 'react-router-dom';
 
 
-
-const Contentpanel = () => {
-
+const Contentpanel = ({ activItem, empty }) => {
 
     const [addTaskinput, setaddTaskinput] = useState('');
 
@@ -18,7 +17,7 @@ const Contentpanel = () => {
 
     const context = useContext(contextToDo);
 
-    const { activItem, setNewItemName, setNewStatus, addTask, isOpenPanel, setisOpenPanel, isLoading, list, setlist } = context;
+    const { setNewItemName, setNewStatus, addTask, isOpenPanel, setisOpenPanel, isLoading, list, setlist } = context;
 
     const complitToDo = (task) => {
         const taskchange = !task.completed
@@ -101,12 +100,10 @@ const Contentpanel = () => {
 
     return (
         <div className='content'>
-            <div className='nameItem'> <h2>{activItem.name}
-            </h2><img src={edit} alt='edit' onClick={() => editItemName(activItem)} /></div>
-
-
-
-            {!activItem.tasks.length && !isOpenPanel && <div className='noTask'>Задачи отсутствуют </div>}
+            <div className='nameItem'>
+                <Link to={`/lists/${activItem.id}`} > <h2 style={{ color: activItem.color.hex }}>{activItem.name}</h2></Link>
+                <img src={edit} alt='edit' onClick={() => editItemName(activItem)} /></div>
+            {!activItem.tasks.length && !isOpenPanel && !empty && <div className='noTask'>Задачи отсутствуют </div>}
             <ul>
                 {activItem.tasks.map((task, index) => (
                     <li key={index}  > <svg onClick={() => complitToDo(task)} className="iconMarker"
@@ -120,21 +117,16 @@ const Contentpanel = () => {
                             d="M54.3,97.2L24.8,67.7c-0.4-0.4-0.4-1,0-1.4l8.5-8.5c0.4-0.4,1-0.4,1.4,0L55,78.1l38.2-38.2   
                         c0.4-0.4,1-0.4,1.4,0l8.5,8.5c0.4,0.4,0.4,1,0,1.4L55.7,97.2C55.3,97.6,54.7,97.6,54.3,97.2z" />
                         </g></svg>
-                        <span>{task.text}</span><img src={edit} alt='edit' onClick={() => editItemNameTask(task)} />
+                        <span className='TextTask'>{task.text}</span><img src={edit} alt='edit' onClick={() => editItemNameTask(task)} />
                         <img src={iconDelet} alt='edit' onClick={() => deletItemNameTask(task)} />
                     </li>
                 ))}
             </ul>
 
             <div className='addNewTask' onClick={openPanelAddItem}> <img src={iconPlus} alt='plus' />Добавить новую задачу</div>
-            {isOpenPanel && <div className='addTask'> <input type='text' placeholder='Название задачи' value={addTaskinput} onChange={handlerInput} />
+            {isOpenPanel && <div className='addTask'> <input type='text' placeholder='Название задачи' value={addTaskinput} onChange={handlerInput} autoFocus={true} />
                 <button className='btnAddTask' type='submit' onClick={() => addNewTask()}>{!isLoading ? 'Добавить задачу' : 'Добавление'} </button>
                 <button className='btnClosePanel' onClick={() => { setisOpenPanel(false); setaddTaskinput('') }}>Отмена</button> </div>}
-
-
-
-
-
 
         </div >
     )
