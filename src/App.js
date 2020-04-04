@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setLists, onActivItem, toggleLoadingList } from './actions/index';
+import { setLists, onActivItem, toggleLoadingList, setColors } from './actions/index';
 
 
 const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadingList }) => {
@@ -33,6 +33,7 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
         return { ...item, tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)), color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0] }
       })
       setLists(state);
+      setColors(allColors);
       toggleLoadingList(false);
       return
     }
@@ -90,13 +91,15 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     setLists,
+    setColors,
     onActivItem,
-    toggleLoadingList
+    toggleLoadingList,
   }, dispatch)
 }
 
 App.propTypes = {
   setLists: PropTypes.func,
+  setColors: PropTypes.func,
   lists: PropTypes.array,
   activitem: PropTypes.object,
   onActivItem: PropTypes.func,

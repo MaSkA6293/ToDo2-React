@@ -87,7 +87,7 @@ function mapStateToProps(state) {
     return {
         lists: state.lists,
         colors: state.colors,
-        tasks: state.tasks
+        tasks: state.tasks,
     }
 }
 

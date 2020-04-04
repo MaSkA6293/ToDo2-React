@@ -12,6 +12,15 @@ export const addNewList = (obj) => {
         data: obj,
     }
 }
+export const setColors = (data) => {
+    console.log(data);
+    return {
+
+        type: "SET_COLORS",
+        data: data,
+    }
+}
+
 
 
 export const setActivColor = (colorId, colors) => {
