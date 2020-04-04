@@ -1,138 +1,108 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Leftpanel from './component/Leftpanel'
-import contextToDo from './component/context'
 import axios from 'axios'
 import ContentPanel from './component/Contentpanel'
 import { Route, useHistory } from "react-router-dom";
-const App = () => {
+import PropTypes from 'prop-types';
 
-  const [list, setlist] = useState(null);
-  const [colors, setcolors] = useState(null);
-  const [activItem, setactivItem] = useState(null)
-  const [isOpenPanel, setisOpenPanel] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-  let history = useHistory();
+import { setLists, onActivItem, toggleLoadingList } from './actions/index';
+
+
+const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadingList }) => {
+  const history = useHistory();
+
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/lists?_expand=color&_embed=tasks')
-      .then(({ data }) => {
-        setlist(data);
-        // setactivItem(data[0])
+    async function getAllData() {
+      const Promislists = axios
+        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/lists')
+        .then(({ data }) => data);
+      const Promistasks = axios
+        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks')
+        .then(({ data }) => data);
+      const Promiscolors = axios
+        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/colors')
+        .then(({ data }) => data);
+      const allLists = await Promislists;
+      const allTasks = await Promistasks;
+      const allColors = await Promiscolors;
+      const state = allLists.map(item => {
+        return { ...item, tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)), color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0] }
+      })
+      setLists(state);
+      toggleLoadingList(false);
+      return
+    }
 
-      });
-    axios.get('http://localhost:3001/colors').then(({ data }) => {
-      setcolors(data);
-    });
+    getAllData()
+
   }, []);
 
   useEffect(() => {
     const id = history.location.pathname.split('lists/')[1];
-    if (list) {
-      const activ = list.find(li => li.id === Number(id));
+
+    if (lists) {
+      const activ = lists.find(li => li.id === id);
+
       if (activ === undefined) {
         history.push('/')
       }
-      setactivItem(activ)
+
+      onActivItem(activ)
     }
 
-  }, [list, history.location.pathname])
+  }, [lists, history.location.pathname])
 
-  const deletItem = (id) => {
-    if (window.confirm('Вы действительно хотите удалить?')) {
-      axios.delete('http://localhost:3001/lists/' + id);
-      setlist(list.filter(item => item.id !== +id));
-
-    }
-  }
-
-  const addNewItem = (obj) => {
-    const newList = [...list, obj];
-    setlist(newList)
-  }
-
-  const activItemList = (obj) => {
-    history.push(`/lists/${obj.id}`)
-    setactivItem(obj);
-    setisOpenPanel(false);
-
-  }
-
-  const setNewItemName = (id, name) => {
-    const newList = list.map(item => {
-      if (item.id === id) {
-        item.name = name
-      }
-      return item
-    })
-    setlist(newList);
-    axios.patch('http://localhost:3001/lists/' + id, { name: name }).catch(() => {
-      alert('Не удалось обновить название списка');
-    })
-  }
-
-
-
-  const setStatusItem = (listid, id, status) => {
-    const newList = list.map(item => {
-      if (item.id === listid) {
-        item.tasks.map(task => {
-          if (task.id === id) {
-            task.completed = status
-          }
-          return item
-        })
-      }
-      return item
-    })
-    setlist(newList);
-
-    axios.patch('http://localhost:3001/tasks/' + id, { completed: status }).catch(() => {
-      alert('Не удалось обновить статус задачи не удалось');
-    })
-
-  }
-  const addTask = (obj) => {
-    setisLoading(true)
-    axios.post('http://localhost:3001/tasks', obj).then(({ data }) => {
-      const newList = list.map(item => {
-        if (item.id === obj.listId) {
-          item.tasks = [...item.tasks, data]
-        }
-        return item
-      })
-      setlist(newList)
-    }).catch(() => {
-      alert('Не удалось добавить задачу');
-    }).finally(() => { setisLoading(false); setisOpenPanel(false) })
-
-
-
-  }
 
   return (
     < div className='App' >
-      <contextToDo.Provider value={{ list, colors, activItem, delet: deletItem, add: addNewItem, activ: activItemList, setNewItemName: setNewItemName, setNewStatus: setStatusItem, addTask: addTask, isOpenPanel, setisOpenPanel, isLoading, setlist, history, setactivItem }}>
-
-        <Route exact path='/'>
-          {list && <Leftpanel />}
-          <div className="contentAll">
-            {list ? list.map((item, index) => {
-              return <ContentPanel key={index} activItem={item} empty={true} />
-            })
-              : ''}
-          </div>
-        </Route>
+      <Route exact path='/'>
+        {!loadingList ? <Leftpanel /> : 'Загрузка'}
+        <div className="contentAll">
+          {!loadingList ? lists.map((item, index) => {
+            return <ContentPanel key={index} item={item} empty={true} />
+          })
+            : 'Загрузка'}
+        </div>
+      </Route>
 
 
-        <Route path='/lists'>
-          {list && <Leftpanel />}
-          {list && activItem && <ContentPanel activItem={activItem} />}
-        </Route>
-      </contextToDo.Provider>
+      <Route path='/lists'>
+        {!loadingList ? <Leftpanel /> : 'Загрузка'}
+        {!loadingList ? <ContentPanel item={activitem} /> : 'Загрузка'}
+      </Route>
     </div >
   );
 }
 
-export default App
+
+function mapStateToProps(store) {
+  return {
+    lists: store.lists,
+    activitem: store.stateApp.activitem,
+    loadingList: store.stateApp.loadingList,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setLists,
+    onActivItem,
+    toggleLoadingList
+  }, dispatch)
+}
+
+App.propTypes = {
+  setLists: PropTypes.func,
+  lists: PropTypes.array,
+  activitem: PropTypes.object,
+  onActivItem: PropTypes.func,
+  loadingList: PropTypes.bool,
+  toggleLoadingList: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

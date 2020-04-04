@@ -1,0 +1,233 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "name": "Продажи",
+      "colorId": 5
+    },
+    {
+      "id": 2,
+      "name": "Фронтенд",
+      "colorId": 4
+    },
+    {
+      "id": 3,
+      "name": "Фильмы и сериалы",
+      "colorId": 3
+    },
+    {
+      "id": 4,
+      "name": "Книги",
+      "colorId": 2
+    },
+    {
+      "id": 5,
+      "name": "Личное",
+      "colorId": 1
+    },
+    {
+      "name": "Спорт",
+      "colorId": 3,
+      "id": 6
+    },
+    {
+      "name": "Курс по ReactJS ToDo",
+      "colorId": 7,
+      "id": 7
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "listId": 2,
+      "text": "Изучить JavaScript",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "listId": 2,
+      "text": "Изучить паттерны проектирования",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "listId": 2,
+      "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "listId": 2,
+      "text": "Redux (redux-observable, redux-saga)",
+      "completed": false
+    },
+    {
+      "listId": 4,
+      "text": "Купить 1985!",
+      "completed": false,
+      "id": 10
+    },
+    {
+      "listId": 7,
+      "text": "Сделали сайдбар",
+      "completed": true,
+      "id": 15
+    },
+    {
+      "listId": 7,
+      "text": "Сделали список задач",
+      "completed": true,
+      "id": 16
+    },
+    {
+      "listId": 7,
+      "text": "Сделали удаление и редактирование задач и списков",
+      "completed": true,
+      "id": 17
+    },
+    {
+      "listId": 6,
+      "text": "Качать пресс",
+      "completed": false,
+      "id": 25
+    },
+    {
+      "listId": 5,
+      "text": "Устроиться на работу",
+      "completed": false,
+      "id": 26
+    },
+    {
+      "listId": 5,
+      "text": "Купить цветы жене",
+      "completed": true,
+      "id": 27
+    },
+    {
+      "listId": 5,
+      "text": "Больше гулять",
+      "completed": false,
+      "id": 28
+    },
+    {
+      "listId": 6,
+      "text": "Турник",
+      "completed": false,
+      "id": 29
+    },
+    {
+      "listId": 1,
+      "text": "Куртка",
+      "completed": false,
+      "id": 36
+    },
+    {
+      "listId": 1,
+      "text": "Джинсы",
+      "completed": true,
+      "id": 37
+    },
+    {
+      "listId": 3,
+      "text": "Побег",
+      "completed": true,
+      "id": 38
+    },
+    {
+      "listId": 3,
+      "text": "Доктор Хаус2",
+      "completed": true,
+      "id": 39
+    },
+    {
+      "listId": 1,
+      "text": "Майка",
+      "completed": true,
+      "id": 40
+    },
+    {
+      "listId": 1,
+      "text": "Календарь",
+      "completed": false,
+      "id": 41
+    },
+    {
+      "listId": 1,
+      "text": "Цветы",
+      "completed": false,
+      "id": 42
+    },
+    {
+      "listId": 3,
+      "text": "Интро",
+      "completed": false,
+      "id": 43
+    },
+    {
+      "listId": 6,
+      "text": "Отжимания от пола",
+      "completed": true,
+      "id": 44
+    },
+    {
+      "listId": 4,
+      "text": "Где-то на севере",
+      "completed": false,
+      "id": 45
+    },
+    {
+      "listId": 4,
+      "text": "В Райском саду",
+      "completed": true,
+      "id": 46
+    },
+    {
+      "listId": 4,
+      "text": "Каникулы в Простоквашино",
+      "completed": false,
+      "id": 47
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "hex": "#C9D1D3",
+      "name": "grey"
+    },
+    {
+      "id": 2,
+      "hex": "#42B883",
+      "name": "green"
+    },
+    {
+      "id": 3,
+      "hex": "#64C4ED",
+      "name": "blue"
+    },
+    {
+      "id": 4,
+      "hex": "#FFBBCC",
+      "name": "pink"
+    },
+    {
+      "id": 5,
+      "hex": "#B6E6BD",
+      "name": "lime"
+    },
+    {
+      "id": 6,
+      "hex": "#C355F5",
+      "name": "purple"
+    },
+    {
+      "id": 7,
+      "hex": "#110133",
+      "name": "black"
+    },
+    {
+      "id": 8,
+      "hex": "#FF6464",
+      "name": "red"
+    }
+  ]
+}

@@ -6,11 +6,18 @@ import Marker from '../Marker'
 import close from './close.svg'
 import classNames from 'classnames';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const AddNewList = ({ items, add, colors }) => {
+
+import { addNewList } from '../../../actions';
+
+const AddNewList = ({ items, colors, addNewList }) => {
+
     let [OpenPanel, setOpenPanel] = useState(false);
     let [inputValue, setinputValue] = useState('');
     let [activColor, setActivColor] = useState(null);
+
     let [isLoading, setisLoading] = useState(false);
 
     useEffect(() => {
@@ -22,6 +29,7 @@ const AddNewList = ({ items, add, colors }) => {
     const handlerinput = (e) => {
         setinputValue(inputValue = e.target.value)
     }
+
     const handlerCloseBtn = () => {
         setOpenPanel(OpenPanel = false);
         setinputValue(inputValue = '')
@@ -30,14 +38,16 @@ const AddNewList = ({ items, add, colors }) => {
     const handlerAddItem = () => {
         if (inputValue !== '') {
             setisLoading(true);
-            axios.post('http://localhost:3001/lists', { name: inputValue, colorId: activColor })
+
+            axios.post('http://5e82e1d178337f00160ae6e7.mockapi.io/lists', { name: inputValue, colorId: activColor })
                 .then(({ data }) => {
                     let color = colors.filter(color => color.id === activColor)[0];
                     let tasks = [];
                     const newitem = {
                         ...data, color, tasks
                     }
-                    add(newitem);
+
+                    addNewList(newitem);
                     setisLoading(false)
                     handlerCloseBtn()
                 }).catch(() => alert('Ошибка при добавлении элемента списка'))
@@ -73,4 +83,18 @@ const AddNewList = ({ items, add, colors }) => {
     )
 
 }
-export default AddNewList
+function mapStateToProps(state) {
+    return {
+        lists: state.lists,
+        colors: state.colors,
+        tasks: state.tasks
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addNewList: addNewList,
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewList);
