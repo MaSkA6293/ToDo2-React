@@ -1,0 +1,118 @@
+.main{
+    display: flex;
+    flex:2 1 60%;
+    flex-direction: column;
+    &__noTask{
+        justify-content: center;
+        display: flex;
+        padding-top: 10px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #7d6060;
+    }
+  
+    &__addNewTask{
+        cursor: pointer;
+        display: flex;
+        width: 250px;
+        height: 40px;
+        border-radius: 7px;
+        font-size: 1rem;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.6;
+        img{
+        margin-right: 5px;
+        margin-left: 10px;
+        }
+         &:hover{
+        opacity: 1;
+     }
+    }
+}
+.list-main{
+    &__item{
+        margin-top: 10px;
+        margin-left: 10px;
+
+        cursor: pointer;
+        align-items: center;
+        font-size: 1.3rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        display: flex;
+        margin-bottom: 10px;
+        max-width: 600px;
+        @media (max-width: 850px){
+      
+        }
+        &:hover img{
+            opacity: 0.5;
+        }
+        img:hover {
+            opacity: 1;
+        }
+        span{
+           flex: 1;
+       
+        }
+        img{
+            opacity: 0;
+        }
+       
+    }
+
+    &__delet{
+        margin-right: 1.2rem;
+        width: 20px;
+    }
+    &__edit{
+        width: 20px;
+    }
+
+    &__iconMarker{
+        margin-right: 15px;
+        opacity: 0.7;
+        width: 25px;
+        &:hover{
+            opacity: 1;
+        }    
+    }
+    &__completed{
+        .st0{
+            fill:#00ff00
+        }
+    }
+    &__textTask{
+        font-size: 1.4rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+.title-main{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    &__link{
+        flex: 1;
+    }
+    &__title{
+        padding-left:35px;
+            text-align: center;
+             font-size: 2.1rem;
+             text-overflow: ellipsis;
+             overflow: hidden;
+             white-space: nowrap;
+
+    }
+    &__picture{
+        margin-right: 2em;
+        opacity: 0.6;
+        &:hover{
+            cursor: pointer;
+               opacity: 1;
+           }
+    }
+}

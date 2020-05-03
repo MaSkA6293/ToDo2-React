@@ -3,9 +3,8 @@ const state = null;
 
 export default function (store = state, action) {
     switch (action.type) {
-        case "SET_COLORS":
-            console.log('red', action)
-            return [...action.data];
+        case "SET_COLORS_LIST":
+            return [...action.payload];
         default:
             return store;
     }

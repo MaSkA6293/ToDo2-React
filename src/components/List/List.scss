@@ -1,0 +1,111 @@
+.list{
+    border-bottom: 4px solid #89949e;
+    max-height: calc(100vh/2.4);
+    overflow-y: auto;        
+    overflow-x: visible;
+    z-index: 3;
+    transition: all ease 2s;
+    &_activ{
+        background-color: #21fbdcc2;
+        border-radius: 10px;
+    }
+  
+    
+    .list__icon{
+        margin-left: 5px;
+        margin-right: 10px;
+        border-radius: 5px;
+        width: 20px;
+        height: 20px;  
+    }
+    .marker{
+        margin-left: 5px;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }      
+    .list__nameList  {
+        flex: 0.9;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 90px;
+        white-space: nowrap;
+        }
+    &__delet{
+        border-radius: 3px;
+        height: 15px;
+        opacity: 0.1;
+        width: 20px;
+        transform: translate(6px, -2px);
+        &:hover{
+            opacity: 1;
+        }
+        }
+    li{
+        img{
+            width: 100%;
+        }
+            
+    }
+    &__menuMobyle{
+        position: absolute;
+        display: none;
+        top:8px;
+        right:-43px;
+        width: 35px;
+        height: 35px;
+        background-color: red;
+        z-index: 5;
+        border-radius: 0.4em;
+        cursor: pointer;
+        span{
+            position: absolute;
+            top: 50%; margin-top: -1px;
+            left: 50%; margin-left: -10px;
+            width: 20px;
+            height: 2px;
+            background-color: black;
+            &::after{
+                position: absolute;
+                top: 50%; margin-top: -1px;
+                left: 50%; margin-left: -10px;
+                width: 20px;
+                height: 2px;
+                background-color: black;
+                content: '';
+                transform: translateY(5px);
+                transition: all ease 1s ;
+            
+            }
+            &::before{
+                position: absolute;
+                top: 50%; margin-top: -1px;
+                left: 50%; margin-left: -10px;
+                width: 20px;
+                height: 2px;
+                background-color: black;
+                content: '';
+                transform: translateY(-5px);
+                transition: all ease 1s ;
+            
+            }  
+        }
+        @media (max-width:425px ){
+            background-color: blue;
+            display: block;
+           
+      }
+    }
+    @media (max-width:650px ){
+    // transform: translateX(-250px);
+   //    visibility: hidden;
+    }
+}
+    
+ 
+    
+
+    
+   
+        

@@ -1,0 +1,53 @@
+.addListBtn{
+
+    border-bottom: none;
+}
+.addNewList{
+    border-bottom: none;
+    margin: 5px;
+    border-radius: 5px;
+    background-image: linear-gradient(360deg, #dfca98, #f1e8d2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding-top: 15px;
+    img{
+        max-width: 25px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+    input{
+        margin: 13px;
+        height: 30px;
+        border-radius: 5px;
+    }
+    ul{
+        display: flex;
+    }
+    &__btn{
+      
+    }
+    &__close{
+        cursor: pointer;
+    }
+   
+}
+
+
+
+.button{
+    cursor: pointer;
+    background-color: #62ff8a61;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 8px;
+    &:focus{
+        border: none;
+    }
+}
+.addListBtn__icon{
+    width: 30px;
+}
+

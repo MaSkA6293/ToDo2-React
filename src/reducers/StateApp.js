@@ -1,28 +1,31 @@
 
-const state = {
-    activitem: {},
+const initialstate = {
+    activitem: null,
     isOpenPanel: false,
-
-
-
-    activColor: false,
-
+    isOpenPanelAddList: false,
     loadingList: true,
-
 };
 
-export default function (store = state, action) {
+export default function (store = initialstate, action) {
     switch (action.type) {
         case "SET_ACTIV_LIST":
-            return { ...store, activitem: { ...action.data } };
-        case "SET_ACTIV_COLOR":
-            return store;
+            if (action.payload === null) {
+                return { ...store, activitem: null, isOpenPanel: false, isOpenPanelAddList: false }
+            }
+            return { ...store, activitem: { ...action.payload }, isOpenPanel: false };
+
         case "OPEN_PANEL_ADD_TASK":
             return { ...store, isOpenPanel: true }
+
         case "CLOSE_PANEL_ADD_TASK":
             return { ...store, isOpenPanel: false }
+
         case "LOADING_LIST":
             return { ...store, loadingList: action.payload }
+
+        case "TOOGLE_OPEN_PANEL_LIST":
+            return { ...store, isOpenPanelAddList: action.payload }
+
         default:
             return store;
     }

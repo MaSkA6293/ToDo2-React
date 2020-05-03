@@ -1,0 +1,16 @@
+.mobyleMenu{
+   transition: all ease;
+   position: absolute;
+   left: 10px;
+   top: 10px;
+   width: 35px;
+   background-image: url(../../assets/img/list.svg);
+   background-size: cover;
+   height: 35px;
+   cursor: pointer;
+   visibility: hidden;
+   img{
+       width: 100%;
+   }
+  
+}

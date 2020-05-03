@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
-import './App.css';
-import Leftpanel from './component/Leftpanel'
+import './App.scss';
+import Leftpanel from '../../containers/Leftpanel'
 import axios from 'axios'
-import ContentPanel from './component/Contentpanel'
+import ContentPanels from '../../containers/Contentpanel'
 import { Route, useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { setLists, onActivItem, toggleLoadingList, setColors } from './actions/index';
-
-
-const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadingList }) => {
+const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadingList, setColors, openPanelAddList }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -30,71 +24,51 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
       const allTasks = await Promistasks;
       const allColors = await Promiscolors;
       const state = allLists.map(item => {
-        return { ...item, tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)), color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0] }
+        return {
+          ...item,
+          tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)),
+          color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0]
+        }
       })
       setLists(state);
       setColors(allColors);
       toggleLoadingList(false);
-      return
     }
-
     getAllData()
-
   }, []);
 
   useEffect(() => {
     const id = history.location.pathname.split('lists/')[1];
-
     if (lists) {
-      const activ = lists.find(li => li.id === id);
-
-      if (activ === undefined) {
+      const activ = lists.find(li => Number(li.id) === Number(id));
+      if (!activ) {
         history.push('/')
+        onActivItem(null)
       }
-
-      onActivItem(activ)
+      else {
+        onActivItem(activ);
+        openPanelAddList(false)
+      }
     }
-
   }, [lists, history.location.pathname])
-
 
   return (
     < div className='App' >
       <Route exact path='/'>
         {!loadingList ? <Leftpanel /> : 'Загрузка'}
-        <div className="contentAll">
+        <div className="App__contentAll">
           {!loadingList ? lists.map((item, index) => {
-            return <ContentPanel key={index} item={item} empty={true} />
+            return <ContentPanels key={index} item={item} empty={true} />
           })
             : 'Загрузка'}
         </div>
       </Route>
-
-
       <Route path='/lists'>
         {!loadingList ? <Leftpanel /> : 'Загрузка'}
-        {!loadingList ? <ContentPanel item={activitem} /> : 'Загрузка'}
+        {!loadingList ? <ContentPanels item={activitem} /> : 'Загрузка'}
       </Route>
     </div >
   );
-}
-
-
-function mapStateToProps(store) {
-  return {
-    lists: store.lists,
-    activitem: store.stateApp.activitem,
-    loadingList: store.stateApp.loadingList,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    setLists,
-    setColors,
-    onActivItem,
-    toggleLoadingList,
-  }, dispatch)
 }
 
 App.propTypes = {
@@ -104,8 +78,9 @@ App.propTypes = {
   activitem: PropTypes.object,
   onActivItem: PropTypes.func,
   loadingList: PropTypes.bool,
-  toggleLoadingList: PropTypes.func
+  toggleLoadingList: PropTypes.func,
+  openPanelAddList: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
 

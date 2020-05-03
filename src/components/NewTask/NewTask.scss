@@ -1,0 +1,27 @@
+.addTask{
+    width: 98%;
+    background-image: linear-gradient(360deg, #f1e8d2, #fdfcf9);
+    padding: 1em;
+    margin: 1%;
+    border-radius: 0.5em;
+    .addTask-contaner{
+        
+    }
+    &__add{
+margin-right: 0.5em;
+    }
+    &__close{
+        background-color: #ff2f1a38;
+    }
+    &__input{
+        display: flex;
+        width: 60%;
+        font-size: 1em;
+        height: 35px;
+        border-radius: 10px;
+        margin-bottom: 9px;
+        padding: 10px;
+        box-shadow: 5px 4px 10px #b9a471;
+        
+    }
+}
