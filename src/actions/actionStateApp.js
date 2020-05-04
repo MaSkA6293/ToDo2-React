@@ -1,5 +1,4 @@
 export const onActivItem = (obj) => {
-    console.log('work')
     return {
         type: "SET_ACTIV_LIST",
         payload: obj,

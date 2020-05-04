@@ -41,6 +41,7 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
     const id = history.location.pathname.split('lists/')[1];
     if (lists) {
       const activ = lists.find(li => Number(li.id) === Number(id));
+
       if (!activ) {
         history.push('/')
         onActivItem(null)
@@ -63,9 +64,9 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
             : 'Загрузка'}
         </div>
       </Route>
-      <Route path='/lists'>
+      <Route path='/lists/:id'>
         {!loadingList ? <Leftpanel /> : 'Загрузка'}
-        {!loadingList ? <ContentPanels item={activitem} /> : 'Загрузка'}
+        {!loadingList && activitem ? <ContentPanels item={activitem} /> : 'Загрузка'}
       </Route>
     </div >
   );

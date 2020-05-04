@@ -15,12 +15,14 @@ const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Router>
+
         <App />
-      </Provider>
-    </Router>
-  </React.StrictMode>,
+
+      </Router>
+    </Provider>
+  </React.StrictMode >,
   document.getElementById('root')
 );
 

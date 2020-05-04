@@ -23,13 +23,15 @@ const Contentpanel = ({
     toggleCompleted,
     oneditTaskText,
     onEditNameList,
-    ondeletTask
+    ondeletTask,
+    onActivItem
 }) => {
     return (
         <div className='main'>
             <div className='main__title title-main'>
                 <Link to={`/lists/${item.id}`}
-                    className='title-main__link'>
+
+                    className='title-main__link' onClick={() => onActivItem(item)}>
                     <h2 className='title-main__title' style={{ color: item.color.hex }}>{item.name}</h2>
                 </Link>
                 <img className='title-main__picture' src={edit} alt='edit' onClick={() => onEditNameList(item)} />

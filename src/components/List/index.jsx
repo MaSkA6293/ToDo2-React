@@ -6,15 +6,20 @@ import iconDelet from '../../assets/img/deletItem.svg';
 import classnames from 'classnames'
 
 import Marker from '../Marker'
+import { useEffect } from 'react';
 
 const List = ({ items, btn, onActivItem, allListTask, stateApp, deletItem, history, buttonMobyle, toggleMobyleMenu }) => {
     return (
-        <ul className={classnames('list', items[0].mobyle ? 'mobyle-menu' : '')}>
+        <ul className={classnames('list')} >
             {
                 items.map((item, index) => (
                     <li key={index}
-                        className={stateApp.activitem && stateApp.activitem.id === item.id ? 'list_activ' : ''}
-                        onClick={!allListTask ? () => { onActivItem(item); history.push(`/lists/${Number(item.id)}`) } : () => { history.push('/') }}>
+                        className={
+                            classnames(stateApp.activitem && stateApp.activitem.id === item.id ? 'list_activ' : '',
+                                item.name === 'Все задачи' && !stateApp.activitem ? 'list_activ' : ''
+                            )}
+                        onClick={!allListTask ? () => { onActivItem(item); history.push(`/lists/${Number(item.id)}`) }
+                            : (e) => { history.push('/') }}>
                         {item.icon ? <img src={item.icon} alt='img' className='list__icon' /> : <Marker addclass='marker' color={item.color.hex} />}
                         <span className='list__nameList'>{item.name}</span>
                         {btn ? <span>[{item.tasks.length}]</span> : ''}
