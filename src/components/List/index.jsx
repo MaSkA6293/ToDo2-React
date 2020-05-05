@@ -6,7 +6,6 @@ import iconDelet from '../../assets/img/deletItem.svg';
 import classnames from 'classnames'
 
 import Marker from '../Marker'
-import { useEffect } from 'react';
 
 const List = ({ items, btn, onActivItem, allListTask, stateApp, deletItem, history, buttonMobyle, toggleMobyleMenu }) => {
     return (

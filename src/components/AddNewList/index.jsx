@@ -32,7 +32,18 @@ const AddNewList = ({ items, colors, addNewList, isOpenPanelAddList, openPanelAd
     const handlerAddItem = () => {
         if (inputValue !== '') {
             setisLoading(true);
-            axios.post('http://5e82e1d178337f00160ae6e7.mockapi.io/lists', { name: inputValue, colorId: activColor })
+            // axios.post('http://5e82e1d178337f00160ae6e7.mockapi.io/lists', { name: inputValue, colorId: activColor })
+            //     .then(({ data }) => {
+            //         let color = colors.filter(color => color.id === activColor)[0];
+            //         let tasks = [];
+            //         const newitem = { ...data, color, tasks }
+            //         addNewList(newitem);
+            //         setisLoading(false)
+            //         handlerCloseBtn()
+            //     }).catch(() => alert('Ошибка при добавлении элемента списка'))
+            //     .finally(() => setisLoading(false))
+
+            axios.post('http://localhost:3001/lists/', { name: inputValue, colorId: activColor })
                 .then(({ data }) => {
                     let color = colors.filter(color => color.id === activColor)[0];
                     let tasks = [];
@@ -42,6 +53,8 @@ const AddNewList = ({ items, colors, addNewList, isOpenPanelAddList, openPanelAd
                     handlerCloseBtn()
                 }).catch(() => alert('Ошибка при добавлении элемента списка'))
                 .finally(() => setisLoading(false))
+
+
         }
         else alert('Введите название списка')
     }

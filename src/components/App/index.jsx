@@ -10,31 +10,41 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
   const history = useHistory();
 
   useEffect(() => {
+    /*  async function getAllData() {
+       const Promislists = axios
+         .get('http://5e82e1d178337f00160ae6e7.mockapi.io/lists')
+         .then(({ data }) => data);
+       const Promistasks = axios
+         .get('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks')
+         .then(({ data }) => data);
+       const Promiscolors = axios
+         .get('http://5e82e1d178337f00160ae6e7.mockapi.io/colors')
+         .then(({ data }) => data);
+       const allLists = await Promislists;
+       const allTasks = await Promistasks;
+       const allColors = await Promiscolors;
+       const state = allLists.map(item => {
+         return {
+           ...item,
+           tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)),
+           color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0]
+         }
+       })
+       setLists(state);
+       setColors(allColors);
+       toggleLoadingList(false);
+     }
+     getAllData() */
+
     async function getAllData() {
-      const Promislists = axios
-        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/lists')
+      const Promislists = axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks')
         .then(({ data }) => data);
-      const Promistasks = axios
-        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks')
-        .then(({ data }) => data);
-      const Promiscolors = axios
-        .get('http://5e82e1d178337f00160ae6e7.mockapi.io/colors')
-        .then(({ data }) => data);
-      const allLists = await Promislists;
-      const allTasks = await Promistasks;
-      const allColors = await Promiscolors;
-      const state = allLists.map(item => {
-        return {
-          ...item,
-          tasks: allTasks.filter(task => Number(task.listId) === Number(item.id)),
-          color: allColors.filter(color => Number(color.id) === Number(item.colorId))[0]
-        }
-      })
-      setLists(state);
-      setColors(allColors);
+      const Promiscolors = axios.get('http://localhost:3001/colors').then(({ data }) => data);
+      setLists(await Promislists);
+      setColors(await Promiscolors);
       toggleLoadingList(false);
     }
-    getAllData()
+    getAllData();
   }, []);
 
   useEffect(() => {

@@ -22,7 +22,8 @@ const Contentpanels = ({
     closePanelAddNewTask }) => {
 
     const toggleCompleted = (id, listId, completed) => {
-        axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + id, { completed: !completed })
+        // axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + id, { completed: !completed })
+        axios.patch('http://localhost:3001/tasks/' + id, { completed: !completed })
             .catch(() => {
                 alert('Не удалось обновить статус задачи не удалось')
             })
@@ -33,7 +34,8 @@ const Contentpanels = ({
         const newName = window.prompt('Введите новое значение', curentTask.text)
         if (newName) {
             editTaskText(curentTask.id, newName, curentTask.listId);
-            axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + curentTask.id, { text: newName, completed: false })
+            // axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + curentTask.id, { text: newName, completed: false })
+            axios.patch('http://localhost:3001/tasks/' + curentTask.id, { text: newName, completed: false })
                 .catch(() => alert('Не удалось обновить название списка'))
         }
     }
@@ -41,7 +43,8 @@ const Contentpanels = ({
     const onEditNameList = (item) => {
         const newName = global.prompt('Введите новое значение', item.name)
         if (newName) {
-            axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/lists/' + item.id, { name: newName })
+            //   axios.put('http://5e82e1d178337f00160ae6e7.mockapi.io/lists/' + item.id, { name: newName })
+            axios.patch('http://localhost:3001/lists/' + item.id, { name: newName })
                 .catch(() => alert('Не удалось обновить название списка'))
             EditNameList(item.id, newName);
         }
@@ -49,7 +52,8 @@ const Contentpanels = ({
 
     const ondeletTask = (id, listId) => {
         if (window.confirm('Вы действительно хотите удалить?')) {
-            axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + id).catch(() => alert('Ошибка удаления'));
+            //  axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + id).catch(() => alert('Ошибка удаления'));
+            axios.delete('http://localhost:3001/tasks/' + id).catch(() => alert('Ошибка удаления'));
             deletTask(id, listId);
         }
     }

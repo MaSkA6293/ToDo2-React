@@ -19,7 +19,8 @@ const NewTask = ({ addNewTask, stateApp, item, closePanelAddNewTask }) => {
             }
             setaddTaskinput('')
 
-            axios.post('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks', obj)
+            //   axios.post('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks', obj)
+            axios.post('http://localhost:3001/tasks/', obj)
                 .then(({ data }) => addNewTask(data))
                 .catch(() => alert('Ошибка при добавлении элемента списка'))
                 .finally()

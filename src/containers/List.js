@@ -19,12 +19,19 @@ const Lists = ({ items, onActivItem, btn, allListTask, stateApp, delet, buttonMo
 
     const deletItem = (id) => {
         if (window.confirm('Вы действительно хотите удалить?')) {
-            axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/lists/' + id)
+            // axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/lists/' + id)
+            //     .catch(() => alert('Ошибка удаления'));
+
+            // const task = items.filter(item => Number(item.id) === Number(id))[0].tasks
+            // task.map(task => axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + task.id)
+            //     .catch(() => alert('Ошибка удаления')))
+            console.log(id)
+            axios.delete('http://localhost:3001/lists/' + Number(id))
                 .catch(() => alert('Ошибка удаления'));
 
-            const task = items.filter(item => Number(item.id) === Number(id))[0].tasks
-            task.map(task => axios.delete('http://5e82e1d178337f00160ae6e7.mockapi.io/tasks/' + task.id)
-                .catch(() => alert('Ошибка удаления')))
+            // const task = items.filter(item => Number(item.id) === Number(id))[0].tasks
+            // task.map(task => axios.delete('http://localhost:3001/tasks/' + task.id)
+            //     .catch(() => alert('Ошибка удаления')))
 
             delet(Number(id))
         }
