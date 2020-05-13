@@ -1,4 +1,5 @@
-
+Learn React, Redux, todo
+В компонентах useEffect закоментированы обращения к mockAPI. Приложение работает только с JSON сервером
 
 ### `npm start`
 
