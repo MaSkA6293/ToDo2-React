@@ -36,14 +36,29 @@ const App = ({ setLists, lists, activitem, onActivItem, loadingList, toggleLoadi
      }
      getAllData() */
 
-    async function getAllData() {
+    function getAllData() {
+      //   const Promislists = axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks')
+      //     .then(({ data }) => data);
+      //   const Promiscolors = axios.get('http://localhost:3001/colors').then(({ data }) => data);
+      //   setLists(await Promislists);
+      //   setColors(await Promiscolors);
+      //   toggleLoadingList(false);
+      // }
+
       const Promislists = axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks')
-        .then(({ data }) => data);
-      const Promiscolors = axios.get('http://localhost:3001/colors').then(({ data }) => data);
-      setLists(await Promislists);
-      setColors(await Promiscolors);
-      toggleLoadingList(false);
+        .then(({ data }) => (data));
+      const Promiscolors = axios.get('http://localhost:3001/colors')
+        .then(({ data }) => (data));
+
+      Promise.all([Promislists, Promiscolors])
+        .then(results => {
+          setLists(results[0]);
+          setColors(results[1]);
+          toggleLoadingList(false);
+        })
     }
+
+
     getAllData();
   }, []);
 
